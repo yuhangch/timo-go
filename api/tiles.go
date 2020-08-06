@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/yuhangch/timvt/db"
 )
 
 func tiles() gin.HandlerFunc {
@@ -27,7 +28,8 @@ func tiles() gin.HandlerFunc {
 
 // handleTiles to handle tiles request.
 func handleTiles(x, y, z int, table string) {
-
+	conn := db.Conn
+	fmt.Println(conn)
 }
 
 func xyz(xstr, ystr, zstr string) (int, int, int, error) {
