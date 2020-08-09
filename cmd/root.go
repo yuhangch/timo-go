@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 
 	"github.com/spf13/viper"
@@ -70,14 +71,14 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	} else {
 		// Find home directory.
-		// home, err := homedir.Dir()
-		// if err != nil {
-		// 	fmt.Println(err)
-		// 	os.Exit(1)
-		// }
+		home, err := homedir.Dir()
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 
 		// Search config in home directory with name ".timo" (without extension).
-		viper.AddConfigPath("./")
+		viper.AddConfigPath(home)
 		viper.SetConfigName(".timo")
 	}
 

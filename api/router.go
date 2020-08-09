@@ -11,12 +11,12 @@ import (
 
 var conn *pgxpool.Pool
 
-// API get gin router for api.
+// API init router and pg pool
 func API(url string) *gin.Engine {
 	r := gin.Default()
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:1234"},
-		AllowMethods:     []string{"PUT", "PATCH", "GET"},
+		AllowMethods:     []string{"GET"},
 		AllowHeaders:     []string{"Origin"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
@@ -31,6 +31,7 @@ func API(url string) *gin.Engine {
 	}
 	conn, err = pgxpool.ConnectConfig(context.Background(), cfg)
 	r.GET("/hello", hello())
+	r.GET("/", hello())
 	r.GET("/tiles/:table/:z/:x/:y", tiles())
 	return r
 }
@@ -39,7 +40,7 @@ func hello() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
 		c.JSON(200, gin.H{
-			"message": "hello timo",
+			"message": "Hello ,This is timo",
 		})
 	}
 }
