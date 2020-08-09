@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/yuhangch/timvt/cmd"
+import "github.com/yuhangch/timo/cmd"
 
 func main() {
 	cmd.Execute()
