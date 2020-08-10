@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/location"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v4/pgxpool"
 )
@@ -25,6 +26,7 @@ func API(url string) *gin.Engine {
 		// },
 		MaxAge: 12 * time.Hour,
 	}))
+	r.Use(location.Default())
 	cfg, err := pgxpool.ParseConfig(url)
 	if err != nil {
 		panic("unable parse database config")
@@ -32,6 +34,8 @@ func API(url string) *gin.Engine {
 	conn, err = pgxpool.ConnectConfig(context.Background(), cfg)
 	r.GET("/hello", hello())
 	r.GET("/", hello())
+	r.GET("/tilejson/:table", tilejson())
+
 	r.GET("/tiles/:table/:z/:x/:y", tiles())
 	return r
 }

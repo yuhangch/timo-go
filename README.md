@@ -36,6 +36,7 @@ $ timo serve --config=./.timo.yaml # select a config file
 ## Endpoint
 ```
 http://host:port/tiles/{table_name}/{z}/{x}/{y}.pbf
+http://host:port/tilejson/{table_name}.json
 ```
 ### Parameters
 - columns 
