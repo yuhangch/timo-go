@@ -16,7 +16,7 @@ var conn *pgxpool.Pool
 func API(url string) *gin.Engine {
 	r := gin.Default()
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:1234"},
+		AllowOrigins:     []string{"http://localhost:1234", "https://yuhangch.github.io"},
 		AllowMethods:     []string{"GET"},
 		AllowHeaders:     []string{"Origin"},
 		ExposeHeaders:    []string{"Content-Length"},
