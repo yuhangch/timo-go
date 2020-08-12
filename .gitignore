@@ -2,3 +2,5 @@ vendor
 .vscode
 .timo.yaml
 timo
+example/ol/node_modules
+example/ol/.cache
