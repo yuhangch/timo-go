@@ -32,11 +32,12 @@ func API(url string) *gin.Engine {
 		panic("unable parse database config")
 	}
 	conn, err = pgxpool.ConnectConfig(context.Background(), cfg)
+
 	r.GET("/hello", hello())
 	r.GET("/", hello())
 	r.GET("/tilejson/:table", tilejson())
-
 	r.GET("/tiles/:table/:z/:x/:y", tiles())
+
 	return r
 }
 
